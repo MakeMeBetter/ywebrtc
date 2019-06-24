@@ -1,26 +1,18 @@
-{
-  "summary": "WebRTC iOS SDK",
-  "authors": "The WebRTC project authors.",
-  "description": "WebRTC is a free, open project that provides browsers and mobile applications with Real-Time Communications (RTC) capabilities via simple APIs.",
-  "homepage": "https://webrtc.org/",
-  "license": {
-    "file": "LICENSE.md",
-    "type": "Multiple"
-  },
-  "name": "YWebRTC",
-  "platforms": {
-    "ios": "9.0"
-  },
-  "preserve_paths": [
-    "LICENSE.md",
-    "README.md"
-  ],
-  "source": {
-    "git": "https://github.com/MakeMeBetter/ywebrtc.git",
-    "tag": "1.0.0"
-  },
-  "vendored_frameworks": [
-    "Frameworks/frameworks/WebRTC.framework"
-  ],
-  "version": "1.0.0"
-}
+Pod::Spec.new do |s|
+  s.name         = "YWebRTC"
+  s.version      = "1.0.0"
+  s.summary      = "WebRTC SDK for iOS"
+  s.description  = <<-DESC
+    WebRTC is a free, open project that provides browsers and mobile
+    applications with Real-Time Communications (RTC) capabilities via simple
+    APIs.
+                   DESC
+  s.homepage     = "http://webrtc.org/"
+  s.license      = { :type => "BSD", :file => "LICENSE.md" }
+  s.author    = "Google Inc."
+  s.platform     = :ios, "9.0"
+  s.source = { :git => 'https://github.com/MakeMeBetter/ywebrtc.git', :tag => s.version }
+  s.source_files = "WebRTC.framework/Headers/**/*.h"
+  s.public_header_files = "WebRTC.framework/Headers/**/*.h"
+  s.vendored_frameworks = "WebRTC.framework"
+end
