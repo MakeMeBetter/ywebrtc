@@ -7,9 +7,49 @@ Bitcode is not supported.
 Our currently provided API’s are Objective C only.
 
 ## Changes
+1.0.1
+- [Bug](https://bugs.chromium.org/p/webrtc/issues/detail?id=11216&q=org.webrtc.RTCDispatcherCaptureSession&colspec=ID%20Pri%20Stars%20M%20Component%20Status%20Owner%20Summary%20Modified)
+
 1.0.0
 - Built from: https://chromium.googlesource.com/external/webrtc/+log/branch-heads/m74
 - Added RTCStatisticsReport.h header to framework
+
+### How to build artifact
+1. Install chrome depot_tools - [guide](https://webrtc.github.io/webrtc-org/native-code/development/prerequisite-sw/)
+
+2. Create folder and navigate to it in terminal
+`cd ${PATH_TO_FOLDER}`
+
+3. Fetch WebRTC ( and wait )
+`fetch --nohooks webrtc_ios`
+
+4. Synchronize gclient
+`gclient sync --with_branch_heads --with_tags`
+
+5. Navigate to src folder
+`cd ./src/`
+
+6. Checkout actual release branch
+`git checkout -b branch_m74 branch-heads/m74`
+Actual branch:
+`Branch ID: m74`
+`Last commit SHA-1: cc1b32545db7823b85f5a83a92ed5f85970492c9`
+`Last commit message: Partially revert https://webrtc-review.googlesource.com/c/src/+/110461.`
+
+7. Synchronize gclient ( again )
+`gclient sync --with_branch_heads --with_tags`
+
+8. One by one apply patches ( download they from this repo )
+`git apply patch_1.0.0.diff`
+`...`
+
+9. Build .fat-framework
+`python tools_webrtc/ios/build_ios_libs.py`
+
+10. Validate framework
+Framework will be at path - `/src/out_ios_libs/WebRTC.framework`
+Validate archs ( should contain string `x86_64 i386 armv7 arm64` )
+`lipo -info ${PATH_TO_FOLDER}/src/out_ios_libs/WebRTC.framework/WebRTC`
 
 ## Getting started
 If you are new to WebRTC valuable resources can be found at webrtc.org/start/.
